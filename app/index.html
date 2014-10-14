@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
 
-    <title>EmberApp</title>
-
+    <title>Batch Maker</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="favicon" type="image/.ico" href="favicon.ico?v1">
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -28,18 +28,40 @@
   <body>
 
 
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/handlebars/handlebars.js"></script>
     <script src="../bower_components/ember/ember.js"></script>
     <script src="../bower_components/ember-data/ember-data.js"></script>
+    <script src="../bower_components/firebase/firebase.js"></script>
+    <script src="../bower_components/emberfire/dist/emberfire.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
+        <script src="templates/application.js"></script>
+        <script src="templates/index.js"></script>
+        <script src="templates/login.js"></script>
+        <script src="templates/createAccount.js"></script>
+        <script src="templates/logout.js"></script>
+        <script src="templates/recipes.js"></script>
+        <script src="templates/recipes/recipe.js"></script>
+        <script src="templates/recipes/new.js"></script>
+        <script src="templates/recipes/index.js"></script>
         <script src="scripts/application.js"></script>
         <script src="scripts/router.js"></script>
+        <script src="scripts/routes/index_route.js"></script>
+        <script src="scripts/routes/login_route.js"></script>
+        <script src="scripts/routes/createAccount_route.js"></script>
+        <script src="scripts/controllers/application_controller.js"></script>
+        <script src="scripts/controllers/login_controller.js"></script>
+        <script src="scripts/controllers/recipes_controller.js"></script>
+        <script src="scripts/controllers/createAccount_controller.js"></script>
+        <script src="scripts/models/user.js"></script>
+        <script src="scripts/models/recipe.js"></script>
+        <script src="scripts/models/pantryFood.js"></script>
         <!-- endbuild -->
 </body>
 </html>

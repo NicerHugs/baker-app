@@ -1,0 +1,35 @@
+<main class="create-account">
+  <h2>Welcome to Batch Maker!</h2>
+  <form>
+    <h3>Please create an account</h3>
+    <label name="username">Username:</label>
+      {{input
+        type="text"
+        placeholder="username"
+        name="username"
+        value=username}}
+    <label name="email">Email:</label>
+      {{input
+        type="email"
+        placeholder="email"
+        name="email"
+        value=email}}
+    <label name="password">Password:</label>
+      {{input
+        type="password"
+        placeholder="password"
+        name="password"
+        value=password}}
+      {{input
+        type="password"
+        placeholder="verify password"
+        name="verifyPassword"
+        value=verifyPassword}}
+    <input type="submit" value="create account" {{action "createUser"}}>
+
+    <p>Already have an account?</p>
+    {{#link-to 'login'}}Log in{{/link-to}}
+  </form>
+
+
+</main>

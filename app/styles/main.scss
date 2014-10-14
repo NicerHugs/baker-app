@@ -1,3 +1,570 @@
 // Bourbon & Neat
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
+
+//==============================================================================
+                                //Mixins & variables
+//==============================================================================
+
+$background: #fff;
+$light: #e6e6e6;
+$medium: #d0d0d0;
+$dark: #6a6a6a;
+
+@mixin line {
+  border-bottom: $medium solid 1px;
+  bottom: 2.1rem;
+  position: relative;
+}
+
+
+//==============================================================================
+                                //Base styles
+//==============================================================================
+
+body {
+  background: $background;
+  color: $dark;
+}
+
+.baker {
+  overflow: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+.active {
+  font-weight: bold;
+}
+
+
+//==============================================================================
+                                //Header
+//==============================================================================
+
+header {
+  background: $medium;
+  height: rem(65);
+  overflow: auto;
+  padding: rem(13);
+  position: relative;
+  width: 100%;
+
+  span {
+    font-style: italic;
+    left: rem(10);
+    position: absolute;
+    top: rem(23);
+  }
+
+  nav {
+    position: absolute;
+    right: rem(10);
+    text-decoration: none;
+    top: rem(23);
+
+    * {
+      font-size: rem(19);
+      margin: 0 rem(5);
+    }
+  }
+
+  h1 {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  a {
+    color: $dark;
+    text-decoration: none;
+  }
+}
+
+
+//==============================================================================
+                                //Sidebar
+//==============================================================================
+
+.sidebar {
+  background: $light;
+  float: left;
+  height: 100%;
+  width: rem(200);
+
+  ul {
+    margin: 0;
+    padding: rem(40);
+  }
+
+  li {
+    border-bottom: solid 1px $medium;
+    display: block;
+    padding: rem(30) 0;
+    text-align: center;
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  a {
+    color: $dark;
+    font-style: italic;
+    text-decoration: none;
+  }
+}
+
+
+//==============================================================================
+                                //Main
+//==============================================================================
+
+main {
+  margin-left: rem(200);
+  max-width: rem(1000);
+  padding: rem(40);
+}
+
+
+//==============================================================================
+                  //Login, create account and logout
+//==============================================================================
+
+.login,
+.create-account,
+.logout {
+  margin-left: 0;
+
+  h2,
+  h3,
+  form {
+    margin: 0 auto;
+    max-width: rem(300);
+    padding: rem(20);
+    text-align: center;
+    width: 80%;
+  }
+
+  form {
+    border: 1px solid $medium;
+    border-radius: rem(5);
+  }
+
+  label {
+    display: block;
+    text-align: left;
+  }
+
+  input {
+    height: 2rem;
+    margin: rem(5) 0 rem(20);
+    width: 100%;
+  }
+}
+
+
+//==============================================================================
+                                //Block lists
+//==============================================================================
+
+.recipes,
+.heading {
+  position: relative;
+  
+  h2 {
+    background: $background;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: rem(15);
+    padding-left: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .line {
+    @include line;
+    bottom: 1.75rem;
+  }
+
+  .view-all {
+    background: $background;
+    color: $dark;
+    padding: 0 rem(10);
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    top: rem(40);
+
+    i {
+      font-weight: bold;
+      margin-left: rem(5);
+    }
+  }
+}
+
+
+.block-list {
+  margin: 0;
+  overflow: auto;
+  position: relative;
+  width: 100%;
+
+  li {
+    background: $medium;
+    border-radius: rem(5);
+    float: left;
+    height: rem(155);
+    margin: 1%;
+    width: 18%;
+  }
+
+  .add-new {
+    text-align: center;
+
+    i {
+      display: block;
+      font-size: 3.5rem;
+      font-weight: 400;
+      margin-top: 26%;
+    }
+  }
+}
+
+//==============================================================================
+                                //Recipe page
+//==============================================================================
+
+.recipe {
+  position: relative;
+
+  header {
+    background: $background;
+    height: auto;
+    text-align: center;
+  }
+
+  .details {
+    border: solid 1px $light;
+    border-radius: rem(5);
+    height: rem(85);
+    margin: rem(20) auto;
+    width: rem(700);
+
+    div {
+      border-right: solid 1px $light;
+      float: left;
+      height: 100%;
+      padding: rem(20) rem(30);
+      width: 25%;
+
+      &:last-of-type {
+        border-right: 0;
+      }
+    }
+  }
+
+  label {
+    color: $medium;
+  }
+
+  span {
+    font-size: 1.8em;
+  }
+
+  .ingredients {
+    border: solid 1px $light;
+    border-radius: rem(5);
+    display: block;
+    font-size: 1.5rem;
+    margin: rem(30) auto;
+    overflow: auto;
+    padding: 0;
+    width: rem(700);
+
+    .heading {
+      line-height: rem(40);
+    }
+
+    li {
+      background: lighten($light, 8%);
+      border-bottom: solid 1px $light;
+
+      &:first-of-type {
+        background: lighten($light, 5%);
+        overflow: auto;
+        padding: rem(10);
+      }
+
+      &:last-of-type {
+        border-bottom: 0;
+      }
+    }
+
+    .quantity {
+      border-right: solid 1px $light;
+      float: left;
+      padding: rem(20);
+      text-align: right;
+      width: 20%;
+    }
+
+    .ingredient {
+      font-weight: 300;
+      margin-left: 20%;
+      padding: rem(20);
+      width: 80%;
+    }
+
+    button {
+      background: linear-gradient(to bottom, lighten($light, 10%), $light);
+      border: solid 1px $medium;
+      border-radius: rem(5);
+      float: right;
+      font-size: .9rem;
+      height: rem(40);
+      padding-top: 0;
+      width: rem(100);
+    }
+  }
+
+  .instructions {
+    margin: 0 auto;
+    width: rem(700);
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      background: none;
+      display: block;
+      overflow: auto;
+      position: relative;
+      width: 100%;
+    }
+
+    h2 {
+      background: $background;
+      display: inline-block;
+      padding-right: rem(10);
+      position: relative;
+      z-index: 1;
+    }
+
+    .line {
+      @include line;
+    }
+
+    .step-description {
+      float: left;
+      width: 66%;
+    }
+
+    .ingredient-table {
+      float: left;
+      width: 34%;
+    }
+
+    .ingredient,
+    .quantity {
+      border-bottom: 1px solid $light;
+      float: left;
+      font-weight: 300;
+      height: rem(40);
+      padding: rem(10);
+      width: 65%;
+
+      &:last-of-type {
+        border-bottom: 0;
+      }
+    }
+
+    .quantity {
+      border-right: 1px solid $light;
+      font-weight: 500;
+      text-align: right;
+      width: 35%;
+    }
+  }
+
+  .notes {
+    margin: 0 auto;
+    position: relative;
+    width: rem(700);
+
+    h2 {
+      background: $background;
+      display: inline-block;
+      padding-right: rem(10);
+      position: relative;
+      z-index: 1;
+    }
+
+    .line {
+      @include line;
+    }
+
+    .step-description {
+      float: left;
+      width: 66%;
+    }
+  }
+
+  .edit {
+    height: rem(200);
+    margin: 0 auto;
+    position: relative;
+    width: rem(700);
+
+    button {
+      background: linear-gradient(to bottom, lighten($dark, 25%), lighten($dark, 5%));
+      border: solid 1px $dark;
+      border-radius: rem(5);
+      bottom: rem(100);
+      color: $light;
+      height: rem(50);
+      position: absolute;
+      right: 0;
+      width: rem(160);
+    }
+
+    label {
+      bottom: rem(120);
+      color: $dark;
+      position: absolute;
+      right: rem(180);
+    }
+  }
+}
+
+//==============================================================================
+                                //New Recipe page
+//==============================================================================
+
+.new {
+  margin-left: rem(200);
+  margin: 0 auto;
+  max-width: rem(700);
+  position: relative;
+
+  h2 {
+    background: $background;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: rem(15);
+    padding-left: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .line {
+    @include line;
+    bottom: 1.8rem;
+  }
+
+  input {
+    background: lighten($light, 5%);
+    border: $medium solid 1px;
+    border-radius: rem(5);
+    box-shadow: inset 1px 1px 2px $medium;
+    height: rem(50);
+    margin-bottom: rem(15);
+    padding: rem(10);
+
+    &[type=submit] {
+      background: linear-gradient(to bottom, lighten($dark, 25%), lighten($dark, 5%));
+      border: solid 1px $dark;
+      color: $light;
+      float: right;
+      margin: rem(10) 0 rem(100);
+      padding: 0 rem(40);
+      width: auto;
+    }
+  }
+
+  textarea {
+    background: lighten($light, 5%);
+    border: $medium solid 1px;
+    border-radius: rem(5);
+    box-shadow: inset 1px 1px 2px $medium;
+    height: rem(150);
+    margin-bottom: rem(15);
+    padding: rem(10);
+    width: 100%;
+  }
+}
+
+.basic {
+
+  button {
+    border: 0;
+    border-radius: rem(5);
+    float: left;
+    height: rem(165);
+    margin-right: rem(20);
+    width: rem(165);
+  }
+
+  i {
+    display: block;
+    font-size: 3rem;
+    font-weight: 300;
+  }
+
+  .basic-qs {
+    float: left;
+    width: rem(510);
+
+    input {
+      width: 100%;
+    }
+  }
+
+  input[type=checkbox] {
+    box-shadow: none;
+    margin-bottom: 0;
+    width: auto;
+  }
+
+  label {
+    display: inline-block;
+    height: rem(50);
+    margin: 0 rem(40) 0 rem(5);
+    vertical-align: middle;
+  }
+
+  .cooking-qs input {
+    width: 20%;
+  }
+
+  .yield-qs input {
+    width: 49%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

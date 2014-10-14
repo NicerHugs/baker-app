@@ -1,0 +1,28 @@
+<div class="baker">
+  <header>
+    <span>The kitchen is yours, chef!</span>
+    <h1>{{#link-to 'index'}}Batch Maker{{/link-to}}</h1>
+    <nav>
+      {{#if isLoggedIn}}
+        {{#link-to 'recipes.new'}}<i class="fa fa-plus"></i>{{/link-to}}
+        {{#link-to 'settings'}}<i class="fa fa-cog"></i>{{/link-to}}
+        {{#link-to 'recipes'}}<i class="fa fa-user"></i>{{/link-to}}
+        <a href="#" {{action 'logout'}}><i class="fa fa-sign-out"></i></a>
+      {{else}}
+        {{#link-to 'login'}}Log In{{/link-to}}
+      {{/if}}
+  </nav>
+  </header>
+  {{#if isLoggedIn}}
+    <section class="sidebar">
+      <ul>
+        <li>{{#link-to "recipes"}}My Recipes{{/link-to}}</li>
+        <li>{{#link-to "recipes.public"}}Public Recipes{{/link-to}}</li>
+        <li>{{#link-to "recipes.popular"}}Popular Recipes{{/link-to}}</li>
+        <li>{{#link-to "recipes.favorite"}}My Favorite Recipes{{/link-to}}</li>
+        <li>{{#link-to "pantry"}}My Pantry{{/link-to}}</li>
+      </ul>
+    </section><!--sidebar-->
+  {{/if}}
+  {{outlet}}
+</div><!--baker-->

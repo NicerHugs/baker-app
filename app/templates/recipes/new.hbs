@@ -1,0 +1,58 @@
+  <form class="new">
+    <section class="basic">
+      <h2>Basic Info</h2>
+      <div class="line"></div>
+      <button><i class="fa fa-plus"></i>Add Photo</button>
+
+      <div class="basic-qs">
+        {{input type="text" placeholder="Recipe Name" value=name}}
+        {{input type="text" placeholder="By" value=author}}
+        {{input type="checkbox" checked=isPublic name="is-public"}}
+          <label name="is-public">Make it public</label>
+        {{input type="checkbox" checked=isPrivate name="is-private"}}
+          <label name="is-public">Keep it private</label>
+      </div><!--basic-qs-->
+
+      <div class="cooking-qs">
+        <select placeholder="Recipe Type">
+          <option>cool</option>
+        </select>
+        {{input type="text" placeholder="Prep Time" value=prepTime}}
+        {{input type="text" placeholder="Cook Time" value=cookTime}}
+        {{input type="text" placeholder="Cook Temp" value=cookTemp}}
+        <select placeholder="Unit">
+          <option>cool</option>
+        </select>
+      </div><!--cooking-qs-->
+
+      <div class="yield-qs">
+        {{input type="text" value=yield placeholder="yield count"}}
+        {{input type="text" value=yieldLabel placeholder="cookies, loaves, etc"}}
+      </div><!--yield-qs-->
+
+    </section><!--basic info-->
+
+    <section class="steps">
+      <h2>Steps</h2>
+      <div class="line"></div>
+
+      <div class="step-qs">
+        {{input type="text" placeholder="Amount" value=amount}}
+        <select placeholder="unit">
+          <option>cool</option>
+        </select>
+        {{input type="text" placeholder="Ingredient" value=ingredient}}
+        <button><i class="fa fa-plus"></i></button>
+      </div><!--step-qs-->
+
+      <textarea placeholder="What directions go with this step?"></textarea>
+    </section><!-- steps-->
+
+    <section class="notes">
+      <h2>Personal Notes</h2>
+      <div class="line"></div>
+      <textarea></textarea>
+    </section><!-- notes-->
+
+    {{input type="submit" value="Save this Recipe!"}}
+  </form>
