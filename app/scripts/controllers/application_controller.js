@@ -23,6 +23,7 @@ Baker.ApplicationController = Ember.Controller.extend({
     logout: function() {
       this.set('isLoggedIn', false);
       localStorage.removeItem('bakerAuth');
+      Baker.ref.unauth();
       this.transitionToRoute('logout');
     }
   }

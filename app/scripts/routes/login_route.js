@@ -15,7 +15,7 @@ Baker.LoginRoute = Ember.Route.extend({
           if (error === null) {
             // user authenticated with Firebase
             self.controllerFor('application').set('isLoggedIn', true);
-            self.transitionToRoute('index');
+            self.transitionTo('index');
           } else {
             console.log("Error authenticating user:", error);
           }
