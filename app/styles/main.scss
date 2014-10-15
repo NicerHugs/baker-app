@@ -180,7 +180,7 @@ main {
 .recipes,
 .heading {
   position: relative;
-  
+
   h2 {
     background: $background;
     display: inline-block;
@@ -511,8 +511,8 @@ main {
     border-radius: rem(5);
     float: left;
     height: rem(165);
-    margin-right: rem(20);
-    width: rem(165);
+    margin-right: 3%;
+    width: 25%;
   }
 
   i {
@@ -523,7 +523,7 @@ main {
 
   .basic-qs {
     float: left;
-    width: rem(510);
+    width: 72%;
 
     input {
       width: 100%;
