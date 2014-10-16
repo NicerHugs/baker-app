@@ -1,9 +1,15 @@
 <div class="baker">
   <header>
-    <span>The kitchen is yours, chef!</span>
+    <span>The kitchen is yours,
+      {{#if currentUser}}
+        {{currentUser.username}}!
+      {{else}}
+        chef!
+      {{/if}}
+    </span>
     <h1>{{#link-to 'index'}}Batch Maker{{/link-to}}</h1>
     <nav>
-      {{#if isLoggedIn}}
+      {{#if currentUser}}
         {{#link-to 'recipes.new'}}<i class="fa fa-plus"></i>{{/link-to}}
         {{#link-to 'settings'}}<i class="fa fa-cog"></i>{{/link-to}}
         {{#link-to 'recipes'}}<i class="fa fa-user"></i>{{/link-to}}
@@ -13,7 +19,7 @@
       {{/if}}
   </nav>
   </header>
-  {{#if isLoggedIn}}
+  {{#if currentUser}}
     <section class="sidebar">
       <ul>
         <li>{{#link-to "recipes"}}My Recipes{{/link-to}}</li>

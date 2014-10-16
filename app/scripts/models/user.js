@@ -1,6 +1,6 @@
 Baker.User = DS.Model.extend({
   username: DS.attr('string'),
   email: DS.attr('string'),
-  recipes: DS.hasMany('recipe'),
+  recipes: DS.hasMany('recipe', {async: true}),
   pantry: DS.hasMany('pantry_food')
 });

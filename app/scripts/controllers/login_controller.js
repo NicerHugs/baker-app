@@ -1,7 +1,6 @@
 Baker.LoginController = Ember.Controller.extend({
   needs: 'application',
-  isLoggedIn: Ember.computed.alias('controllers.application.isLoggedIn'),
-  hasAccount: Ember.computed.alias('controllers.application.hasAccount'),
+  currentUser: Ember.computed.alias('controllers.application.currentUser'),
   actions: {
     logIn: function() {
       var self = this;
@@ -12,10 +11,9 @@ Baker.LoginController = Ember.Controller.extend({
       Baker.ref.authWithPassword(user, function(error, authData) {
         if (error === null) {
           // user authenticated with Firebase
-          //set authdata to local storage
+          // set authdata to local storage
           localStorage.setItem('bakerAuth', JSON.stringify(authData));
-          self.set('isLoggedIn', true);
-          self.set('hasAccount', true);
+          self.set('currentUser', self.store.find('user', authData.uid));
           self.set('email', '');
           self.set('password', '');
           self.transitionToRoute('index');

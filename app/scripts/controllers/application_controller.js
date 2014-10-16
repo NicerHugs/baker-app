@@ -1,17 +1,15 @@
 Baker.ApplicationController = Ember.Controller.extend({
-  hasAccount: false,
-  isLoggedIn: false,
+  currentUser: '',
   init: function() {
     var self = this;
     this._super();
     if (localStorage.getItem('bakerAuth')) {
       // get the authData from localStorage
-      this.set('hasAccount', true);
-      var authData = JSON.parse(localStorage.getItem('bakerAuth'));
-      Baker.ref.authWithCustomToken(authData.token, function(error, authData) {
+      var localAuthData = JSON.parse(localStorage.getItem('bakerAuth'));
+      Baker.ref.authWithCustomToken(localAuthData.token, function(error, authData) {
         if (error === null) {
           // user authenticated with Firebase
-          self.set('isLoggedIn', true);
+          self.set('currentUser', self.store.find('user', authData.uid));
           self.transitionToRoute('index');
         } else {
           console.log("Error authenticating user:", error);
@@ -21,7 +19,7 @@ Baker.ApplicationController = Ember.Controller.extend({
   },
   actions: {
     logout: function() {
-      this.set('isLoggedIn', false);
+      this.set('currentUser', '');
       localStorage.removeItem('bakerAuth');
       Baker.ref.unauth();
       this.transitionToRoute('logout');

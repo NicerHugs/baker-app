@@ -1,12 +1,9 @@
-Baker.CreateAccountController = Ember.ArrayController.extend({
+Baker.CreateAccountController = Ember.Controller.extend({
   needs: 'application',
   isLoggedIn: Ember.computed.alias('controllers.application.isLoggedIn'),
-  hasAccount: Ember.computed.alias('controllers.application.hasAccount'),
-  accountData: {},
   actions: {
     createUser: function() {
       var self = this;
-      var store = this.store;
       var username = this.get('username');
       var email = this.get('email');
       var password = this.get('password');
@@ -18,16 +15,25 @@ Baker.CreateAccountController = Ember.ArrayController.extend({
         // user created w/o error
         if (error === null) {
           // user authenticated with Firebase
-          // create the user on server for data persistence
-          var user = store.createRecord('user', {
-            username: username,
-            email: email
+          // create the user on server for data persistence. must first
+          // login to get and set the id
+          Baker.ref.authWithPassword({email:email, password: password},
+            function(error, authData){
+            var id = authData.uid;
+            var user = self.store.createRecord('user', {
+              id: id,
+              username: username,
+              email: email
+            });
+            localStorage.setItem('bakerAuth', JSON.stringify(authData));
+            user.save();
+            self.set('username', '');
+            self.set('email', '');
+            self.set('password', '');
+            self.transitionToRoute('login');
           });
-          user.save().then(function(){
-          });
-          self.set('hasAccount', true);
-          self.set('accountData', {email: email, password: password});
-          self.transitionToRoute('login');
+          // now that user is stored with id matching login id, log out
+          Baker.ref.unauth();
         // user not created
         } else {
           console.log("Error creating user:", error);

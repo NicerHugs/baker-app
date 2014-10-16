@@ -29,6 +29,7 @@ body {
 
 .baker {
   overflow: auto;
+  position: relative;
 }
 
 ul {
@@ -92,8 +93,10 @@ header {
 
 .sidebar {
   background: $light;
+  bottom: 0;
   float: left;
-  height: 100%;
+  position: absolute;
+  top: rem(65);
   width: rem(200);
 
   ul {
@@ -218,6 +221,10 @@ main {
   overflow: auto;
   position: relative;
   width: 100%;
+
+  a {
+    color: $dark;
+  }
 
   li {
     background: $medium;
@@ -472,6 +479,14 @@ main {
     bottom: 1.8rem;
   }
 
+  select {
+    border: $medium 1px solid;
+    box-shadow: inset 1px 1px 2px $medium;
+    height: rem(50);
+    text-align: center;
+    width: 19%;
+  }
+
   input {
     background: lighten($light, 5%);
     border: $medium solid 1px;
@@ -544,7 +559,7 @@ main {
   }
 
   .cooking-qs input {
-    width: 20%;
+    width: 19%;
   }
 
   .yield-qs input {
@@ -552,6 +567,21 @@ main {
   }
 }
 
+.steps {
+  overflow: auto;
+
+  input {
+    width: 30%;
+  }
+
+  input[type=submit] {
+    background: linear-gradient(to bottom, lighten($light, 5%), $light);
+    border: $medium 1px solid;
+    box-shadow: none;
+    color: $dark;
+    margin-bottom: rem(10);
+  }
+}
 
 
 

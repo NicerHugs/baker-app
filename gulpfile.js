@@ -103,10 +103,10 @@ gulp.task('watch', ['connect', 'serve'], function () {
     '.tmp/styles/**/*.css',
     'app/scripts/**/*.js',
     'app/images/**/*',
-    'app/templates/*.hbs'
+    'app/templates/**/*.hbs'
   ]).on('change', $.livereload.changed);
 
-  gulp.watch('app/templates/*.hbs', ['templates']);
+  gulp.watch('app/templates/**/*.hbs', ['templates']);
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('bower.json', ['wiredep']);
 });

@@ -7,7 +7,11 @@
     {{/link-to}}
   </div>
   <ul class="block-list">
-    <li class="add-new"><i class="fa fa-plus"></i>Add Recipe</li>
+    {{#link-to "recipes.new"}}
+      <li class="add-new">
+        <i class="fa fa-plus"></i>Add Recipe
+      </li>
+    {{/link-to}}
     <li></li>
     <li></li>
     <li></li>

@@ -6,7 +6,7 @@
 
       <div class="basic-qs">
         {{input type="text" placeholder="Recipe Name" value=name}}
-        {{input type="text" placeholder="By" value=author}}
+        {{input type="text" placeholder="By" value=username}}
         {{input type="checkbox" checked=isPublic name="is-public"}}
           <label name="is-public">Make it public</label>
         {{input type="checkbox" checked=isPrivate name="is-private"}}
@@ -14,15 +14,15 @@
       </div><!--basic-qs-->
 
       <div class="cooking-qs">
-        <select placeholder="Recipe Type">
-          <option>cool</option>
-        </select>
+        {{view Ember.Select
+            content=recipeType
+            value=selectedRecipe}}
         {{input type="text" placeholder="Prep Time" value=prepTime}}
         {{input type="text" placeholder="Cook Time" value=cookTime}}
         {{input type="text" placeholder="Cook Temp" value=cookTemp}}
-        <select placeholder="Unit">
-          <option>cool</option>
-        </select>
+        {{view Ember.Select
+            content=tempUnit
+            value=selectedTempUnit}}
       </div><!--cooking-qs-->
 
       <div class="yield-qs">
@@ -38,14 +38,13 @@
 
       <div class="step-qs">
         {{input type="text" placeholder="Amount" value=amount}}
-        <select placeholder="unit">
-          <option>cool</option>
-        </select>
+        {{input type="text" placeholder="Unit" value=ingredientUnit}}
         {{input type="text" placeholder="Ingredient" value=ingredient}}
-        <button><i class="fa fa-plus"></i></button>
+        <button {{action "addIngredientStep"}}><i class="fa fa-plus"></i></button>
       </div><!--step-qs-->
 
       <textarea placeholder="What directions go with this step?"></textarea>
+      <input type="submit" value="Add another step" {{action "addStep"}}>
     </section><!-- steps-->
 
     <section class="notes">
@@ -54,5 +53,5 @@
       <textarea></textarea>
     </section><!-- notes-->
 
-    {{input type="submit" value="Save this Recipe!"}}
+    <input type="submit" value="Save this Recipe!" {{action "saveRecipe"}}>
   </form>

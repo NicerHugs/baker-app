@@ -4,9 +4,5 @@ Baker.CreateAccountRoute = Ember.Route.extend({
     if (loggedIn){
       this.transitionTo('index');
     }
-  },
-
-  model: function() {
-    return this.store.find('user');
   }
 });
