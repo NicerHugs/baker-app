@@ -13,10 +13,10 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
   //add ingredients to recipe
 
   makeRecipe: function() {
-    console.log(this.author);
-    this.recipe = this.store.createRecord('recipe', {
-      author: this.author
-    });
+    var config = Ember.merge({
+      author: this.author,
+    }, this.attributes);
+    this.recipe = this.store.createRecord('recipe',config);
     return this.get('recipe').save();
   },
 

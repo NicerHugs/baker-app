@@ -1,7 +1,6 @@
 Baker.Recipe = DS.Model.extend({
   author: DS.belongsTo('user'),
   name: DS.attr('string'),
-  isPublic: DS.attr('boolean'),
   isPrivate: DS.attr('boolean'),
   yield: DS.attr('number'),
   yieldUnit: DS.attr('string'),
@@ -14,12 +13,12 @@ Baker.Recipe = DS.Model.extend({
   cookTemp: DS.attr('number'),
   cookTempUnit: DS.attr('string'),
   ingredients: DS.hasMany('ingredientFood'),
-  steps: DS.hasMany('step'),
+  steps: DS.hasMany('step', {embedded: true}),
   notes: DS.attr('string')
 });
 
 Baker.Step = DS.Model.extend({
-  index: DS.attr('number'),
+  stepNum: DS.attr('number'),
   description: DS.attr('string'),
   ingredients: DS.hasMany('ingredientFood')
 });

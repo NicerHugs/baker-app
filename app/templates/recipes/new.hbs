@@ -6,11 +6,10 @@
 
       <div class="basic-qs">
         {{input type="text" placeholder="Recipe Name" value=name}}
-        {{input type="text" placeholder="By" value=username}}
+        {{input type="text" placeholder="By" value=author.username disabled="true"}}
         {{input type="checkbox" checked=isPublic name="is-public"}}
           <label name="is-public">Make it public</label>
         {{input type="checkbox" checked=isPrivate name="is-private"}}
-          <label name="is-public">Keep it private</label>
       </div><!--basic-qs-->
 
       <div class="cooking-qs">
@@ -36,7 +35,7 @@
       <h2>Steps</h2>
       <div class="line"></div>
 
-        {{#each steps}}
+        {{#each steps itemController="step"}}
           <div class="step-qs">
             {{#each ingredients}}
               {{input type="text" placeholder="Amount" value=amount}}
@@ -45,7 +44,9 @@
                 <button {{action "addIngredient"}}><i class="fa fa-plus"></i></button>
             {{/each}}
           </div><!--step-qs-->
-          <textarea placeholder="What directions go with this step?"></textarea>
+          {{textarea
+            placeholder="What directions go with this step?"
+            value=description}}
         {{/each}}
 
       <input type="submit" value="Add another step" {{action "addStep"}}>
