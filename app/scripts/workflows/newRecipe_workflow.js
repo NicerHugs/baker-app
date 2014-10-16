@@ -7,16 +7,24 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
       });
   },
 
-  //save steps
-  //save ingredients
-  //add steps to recipe
+  saveIngredients: function() {
+    this.ingredients.forEach(function(ingredient) {
+      ingredient.save();
+    });
+  },
+
+  //save ingredients to server
   //add ingredients to recipe
 
   makeRecipe: function() {
     var config = Ember.merge({
       author: this.author,
     }, this.attributes);
-    this.recipe = this.store.createRecord('recipe',config);
+    this.set('recipe', this.store.createRecord('recipe',config));
+    var recipe = this.get('recipe');
+    this.get('steps').forEach(function(step){
+      recipe.get('steps').addObject(step);
+    });
     return this.get('recipe').save();
   },
 
@@ -29,7 +37,9 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
   run: function() {
     return this.fetchAuthor()
       .then(this.makeRecipe.bind(this))
+      // .then(this.addSteps.bind(this))
       .then(this.addRecipeToAuthor.bind(this))
+      .then(this.saveIngredients.bind(this))
       .then(console.log('finished'));
   }
 });

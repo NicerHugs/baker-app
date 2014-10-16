@@ -9,15 +9,20 @@
         {{input type="text" placeholder="By" value=author.username disabled="true"}}
         {{input type="checkbox" checked=isPublic name="is-public"}}
           <label name="is-public">Make it public</label>
-        {{input type="checkbox" checked=isPrivate name="is-private"}}
       </div><!--basic-qs-->
 
       <div class="cooking-qs">
         {{view Ember.Select
             content=recipeType
-            value=selectedRecipe}}
+            value=selectedRecipeType}}
         {{input type="text" placeholder="Prep Time" value=prepTime}}
+        {{view Ember.Select
+            content=timeUnit
+            value=selectedPrepTimeUnit}}
         {{input type="text" placeholder="Cook Time" value=cookTime}}
+        {{view Ember.Select
+            content=timeUnit
+            value=selectedCookTimeUnit}}
         {{input type="text" placeholder="Cook Temp" value=cookTemp}}
         {{view Ember.Select
             content=tempUnit
@@ -26,7 +31,7 @@
 
       <div class="yield-qs">
         {{input type="text" value=yield placeholder="yield count"}}
-        {{input type="text" value=yieldLabel placeholder="cookies, loaves, etc"}}
+        {{input type="text" value=yieldUnit placeholder="cookies, loaves, etc"}}
       </div><!--yield-qs-->
 
     </section><!--basic info-->
@@ -37,7 +42,7 @@
 
         {{#each steps itemController="step"}}
           <div class="step-qs">
-            {{#each ingredients}}
+            {{#each ingredients itemController="ingredient"}}
               {{input type="text" placeholder="Amount" value=amount}}
               {{input type="text" placeholder="Unit" value=ingredientUnit}}
               {{input type="text" placeholder="Ingredient" value=ingredient}}
@@ -55,7 +60,8 @@
     <section class="notes">
       <h2>Personal Notes</h2>
       <div class="line"></div>
-      <textarea></textarea>
+      {{textarea
+        value=notes}}
     </section><!-- notes-->
 
     <input type="submit" value="Save this Recipe!" {{action "saveRecipe"}}>

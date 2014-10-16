@@ -1,7 +1,7 @@
 Baker.Recipe = DS.Model.extend({
   author: DS.belongsTo('user'),
   name: DS.attr('string'),
-  isPrivate: DS.attr('boolean'),
+  isPublic: DS.attr('boolean'),
   yield: DS.attr('number'),
   yieldUnit: DS.attr('string'),
   recipeType: DS.attr('string'),
