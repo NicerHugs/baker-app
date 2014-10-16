@@ -36,14 +36,18 @@
       <h2>Steps</h2>
       <div class="line"></div>
 
-      <div class="step-qs">
-        {{input type="text" placeholder="Amount" value=amount}}
-        {{input type="text" placeholder="Unit" value=ingredientUnit}}
-        {{input type="text" placeholder="Ingredient" value=ingredient}}
-        <button {{action "addIngredientStep"}}><i class="fa fa-plus"></i></button>
-      </div><!--step-qs-->
+        {{#each steps}}
+          <div class="step-qs">
+            {{#each ingredients}}
+              {{input type="text" placeholder="Amount" value=amount}}
+              {{input type="text" placeholder="Unit" value=ingredientUnit}}
+              {{input type="text" placeholder="Ingredient" value=ingredient}}
+                <button {{action "addIngredient"}}><i class="fa fa-plus"></i></button>
+            {{/each}}
+          </div><!--step-qs-->
+          <textarea placeholder="What directions go with this step?"></textarea>
+        {{/each}}
 
-      <textarea placeholder="What directions go with this step?"></textarea>
       <input type="submit" value="Add another step" {{action "addStep"}}>
     </section><!-- steps-->
 

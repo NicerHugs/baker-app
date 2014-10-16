@@ -4,6 +4,7 @@ Baker.RecipesNewController = Ember.Controller.extend({
   selectedRecipe: null,
   tempUnit: ["Farenheit", "Celcius"],
   selectedTempUnit: null,
+  steps: [{ ingredients: [{}] }],
   authorName: Ember.computed.alias('controllers.application.currentUser.username'),
   author: Ember.computed.alias('controllers.application.currentUser'),
   actions: {
@@ -15,9 +16,9 @@ Baker.RecipesNewController = Ember.Controller.extend({
       workflow.run();
     },
     addStep: function() {
-      console.log('you want to add a step');
+      this.steps.addObject({});
     },
-    addIngredientStep: function() {
+    addIngredient: function() {
       console.log('you want to add another ingredient');
     }
   }
