@@ -14,7 +14,8 @@
       <div class="cooking-qs">
         {{view Ember.Select
             content=recipeType
-            value=selectedRecipeType}}
+            value=selectedRecipeType
+            prompt="Recipe Type"}}
         {{input type="text" placeholder="Prep Time" value=prepTime}}
         {{view Ember.Select
             content=timeUnit
@@ -41,14 +42,52 @@
       <div class="line"></div>
 
         {{#each steps itemController="step"}}
-          <div class="step-qs">
-            {{#each ingredients itemController="ingredient"}}
-              {{input type="text" placeholder="Amount" value=amount}}
-              {{input type="text" placeholder="Unit" value=ingredientUnit}}
-              {{input type="text" placeholder="Ingredient" value=ingredient}}
-                <button {{action "addIngredient"}}><i class="fa fa-plus"></i></button>
-            {{/each}}
-          </div><!--step-qs-->
+          {{#each ingredients itemController="ingredient"}}
+              <div class="step-qs">
+                {{#if isAdded}}
+                  {{#if isEditing}}
+                    {{input type="text" placeholder="Amount" value=amount}}
+                    {{view Ember.Select
+                      content=foodUnits
+                      optionValuePath="content.id"
+                      optionLabelPath="content.name"
+                      prompt="Unit"
+                      value=foodUnit}}
+                    {{view Ember.Select
+                      content=foods
+                      optionValuePath="content.id"
+                      optionLabelPath="content.name"
+                      prompt="Ingredient"
+                      value=food}}
+                    {{input type="text" placeholder="Ingredient" value=ingredient}}
+                    <button {{action "saveIngredient"}}>done</button>
+                  {{else}}
+                    <span>{{amount}}</span>
+                    <span>{{foodUnitName}}</span>
+                    <span>{{ingredient}}</span>
+                    <button {{action "editIngredient"}}>edit</button>
+                  {{/if}}
+                  <button {{action "deleteIngredient"}}>delete</button>
+                {{else}}
+                  {{input type="text" placeholder="Amount" value=amount}}
+                  {{view Ember.Select
+                    content=foodUnits
+                    optionValuePath="content.id"
+                    optionLabelPath="content.name"
+                    prompt="unit"
+                    action=populateIngredients
+                    value=foodUnit}}
+                  {{view Ember.Select
+                    content=foods
+                    optionValuePath="content.id"
+                    optionLabelPath="content.name"
+                    prompt="Ingredient"
+                    value=food}}
+                  {{input type="text" placeholder="Ingredient" value=ingredient}}
+                  <button {{action "addIngredient"}}>add</button>
+                {{/if}}
+              </div><!--step-qs-->
+          {{/each}}
           {{textarea
             placeholder="What directions go with this step?"
             value=description}}

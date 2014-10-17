@@ -15,6 +15,7 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
 
   //save ingredients to server
   //add ingredients to recipe
+  //
 
   makeRecipe: function() {
     var config = Ember.merge({
@@ -37,7 +38,6 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
   run: function() {
     return this.fetchAuthor()
       .then(this.makeRecipe.bind(this))
-      // .then(this.addSteps.bind(this))
       .then(this.addRecipeToAuthor.bind(this))
       .then(this.saveIngredients.bind(this))
       .then(console.log('finished'));
