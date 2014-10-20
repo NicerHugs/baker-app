@@ -7,6 +7,7 @@ Baker.RecipesNewController = Ember.Controller.extend({
   selectedTempUnit: null,
   author: Ember.computed.alias('controllers.application.currentUser'),
   ingredients: [],
+  steps: [],
   isPublic: false,
   actions: {
     saveRecipe: function() {
@@ -33,11 +34,6 @@ Baker.RecipesNewController = Ember.Controller.extend({
       workflow.run();
     },
     addStep: function() {
-      // var prevStepID = this.steps[this.get('steps').length-1].id;
-      // this.store.find('step', prevStepID)
-      //   .then(function(step) {
-      //     step.set('description', self.get('description'));
-      // });
       var stepNum = this.get('steps').length + 1;
       var newStep = this.store.createRecord('step', {
         stepNum: stepNum,
@@ -48,12 +44,19 @@ Baker.RecipesNewController = Ember.Controller.extend({
 });
 
 Baker.StepController = Ember.ObjectController.extend({
-  init: function() {
-    this._super();
-    this.set('ingredients', []);
-    var newIngredient = this.store.createRecord('ingredientFood');
-    this.get('ingredients').addObject(newIngredient);
-    this.get('parentController').get('ingredients').addObject(newIngredient);
+  isEditing: true,
+  actions: {
+    addIngredient: function() {
+      var newIngredient = this.store.createRecord('ingredientFood');
+      this.get('ingredients').addObject(newIngredient);
+    },
+    saveStep: function() {
+      this.set('isEditing', false);
+      this.get('parentController.steps').addObject(this.get('model'));
+    },
+    editStep: function() {
+      this.set('isEditing', true);
+    }
   }
 });
 
@@ -67,11 +70,10 @@ Baker.IngredientController = Ember.ObjectController.extend({
         self.set('foodUnits', foodUnits);
     });
   },
-  isAdded: false,
   isEditing: true,
   foodUnit: 'each',
   foods: [],
-  populateIngredients: function() {
+  listOfIngredients: function() {
     var self=this;
     var foodUnit = this.get('foodUnit');
     var store = this.store;
@@ -80,7 +82,6 @@ Baker.IngredientController = Ember.ObjectController.extend({
         store.find('unitType', foodUnit.get('unitType.id'))
           .then(function(foodUnitType) {
             self.set('foods', foodUnitType.get('foods'));
-            console.log(self.get('foods'));
           });
     });
   }.property('foodUnit'),
@@ -89,36 +90,23 @@ Baker.IngredientController = Ember.ObjectController.extend({
       this.set('isEditing', true);
     },
     saveIngredient: function() {
+      var self = this;
       this.set('isEditing', false);
-      this.set('quantity', this.get('amount'));
+      this.store.find('foodUnit', this.get('foodUnit')).then(function(unit){
+        self.set('unit', unit);
+      });
+      this.store.find('food', this.get('name')).then(function(food){
+        self.set('food', food);
+      });
+      this.get('parentController.parentController.ingredients').addObject(this.get('model'));
     },
     deleteIngredient: function() {
       var ingredient = this.get('model');
-      this.get('parentController').get('ingredients').removeObject(ingredient);
-      this.get('parentController').get('parentController')
-        .get('ingredients').removeObject(ingredient);
+      this.get('parentController.ingredients').removeObject(ingredient);
+      this.get('parentController.parentController.ingredients')
+        .removeObject(ingredient);
       ingredient.deleteRecord();
     },
-    addIngredient: function() {
-      var self = this;
-      var ingredient = this.get('model');
-      this.set('isAdded', true);
-      this.set('isEditing', false);
-      ingredient.set('quantity', this.get('amount'));
-      this.store.find('foodUnit', this.get('foodUnit'))
-        .then(function(model) {
-          ingredient.set('unit', model);
-          self.set('foodUnitName', model.get('name'));
-        });
-      //store the current ingredient model on the step's ingredients
-      this.get('parentController').get('ingredients')
-        .addObject(ingredient);
-      //store the current ingredient model on the recipe controller's ingredients
-      this.get('parentController').get('parentController')
-        .get('ingredients').addObject(ingredient);
-      var newIngredient = this.store.createRecord('ingredientFood');
-      this.get('parentController').get('ingredients').addObject(newIngredient);
-    }
   }
 });
 

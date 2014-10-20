@@ -570,6 +570,9 @@ main {
 .steps {
   overflow: auto;
 
+  .step {
+    overflow: auto;
+  }
   .step-qs {
     width: 100%;
 

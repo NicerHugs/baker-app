@@ -1,0 +1,13 @@
+{{view Ember.Select
+  content=foodUnits
+  optionValuePath="content.id"
+  optionLabelPath="content.name"
+  prompt="Unit"
+  action=listOfIngredients
+  value=foodUnit}}
+{{view Ember.Select
+  content=foods
+  optionValuePath="content.id"
+  optionLabelPath="content.name"
+  prompt="Ingredient"
+  value=name}}
