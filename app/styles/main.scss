@@ -225,6 +225,8 @@ main {
 
   a {
     color: $dark;
+    height: rem(155);
+    width: 18%;
   }
 
   li {
@@ -233,10 +235,33 @@ main {
     float: left;
     height: rem(155);
     margin: 1%;
+    position: relative;
     width: 18%;
+
+    img {
+      border-radius: rem(5);
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    h4 {
+      background: RGBA(245, 245, 245, .5);
+      bottom: 0;
+      font-size: rem(20);
+      left: 0;
+      margin: 0;
+      padding: rem(50) 0;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      top: 0;
+      z-index: 100;
+    }
   }
 
   .add-new {
+    border-radius: rem(5);
     text-align: center;
 
     i {

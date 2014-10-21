@@ -5,6 +5,14 @@ Baker.RecipesEditController = Ember.ObjectController.extend({
 
 
   actions: {
+    addPic: function() {
+      var self = this;
+      filepicker.setKey("A2XfJXxUSw61YLa6JvOkgz");
+
+      filepicker.pickAndStore({},{},function(Blobs){
+        self.set('imgURL', Blobs[0].url);
+      });
+    },
     saveRecipe: function() {
       this.get('ingredients').forEach(function(ingredient) {
         ingredient.save();
