@@ -8,8 +8,11 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
   },
 
   saveIngredients: function() {
+    var self = this;
     this.ingredients.forEach(function(ingredient) {
       ingredient.save();
+      self.get('recipe.ingredients').addObject(ingredient);
+      self.get('recipe').save();
     });
   },
 
