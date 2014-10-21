@@ -1,0 +1,90 @@
+<form class="new">
+  <section class="basic">
+    <h2>Basic Info</h2>
+    <div class="line"></div>
+    <button><i class="fa fa-plus"></i>Add Photo</button>
+
+    <div class="basic-qs">
+      {{input type="text" placeholder="Recipe Name" value=name}}
+      {{input type="text" placeholder="By" value=author.username disabled="true"}}
+      {{input type="checkbox" checked=isPublic name="is-public"}}
+        <label name="is-public">Make it public</label>
+    </div><!--basic-qs-->
+
+    <div class="cooking-qs">
+      {{view Ember.Select
+          content=recipeType
+          value=selectedRecipeType
+          prompt="Recipe Type"}}
+      {{input type="text" placeholder="Prep Time" value=prepTime}}
+      {{view Ember.Select
+          content=timeUnit
+          value=selectedPrepTimeUnit}}
+      {{input type="text" placeholder="Cook Time" value=cookTime}}
+      {{view Ember.Select
+          content=timeUnit
+          value=selectedCookTimeUnit}}
+      {{input type="text" placeholder="Cook Temp" value=cookTemp}}
+      {{view Ember.Select
+          content=tempUnit
+          value=selectedTempUnit}}
+    </div><!--cooking-qs-->
+
+    <div class="yield-qs">
+      {{input type="text" value=yieldCount placeholder="yield count"}}
+      {{input type="text" value=yieldUnit placeholder="cookies, loaves, etc"}}
+    </div><!--yield-qs-->
+
+  </section><!--basic info-->
+
+  <section class="steps">
+    <h2>Steps</h2>
+    <div class="line"></div>
+
+      <div class="step">
+        {{#each steps itemController="step"}}
+        <h3>Step {{stepNum}}</h3>
+        {{#each ingredients itemController="ingredient"}}
+            <div class="step-qs">
+                {{#if isEditing}}
+                  {{input type="text" placeholder="Amount" value=amount}}
+                  {{partial "ingredientForm"}}
+                  <button {{action "saveIngredient"}}>save</button>
+                {{else}}
+                  <span>{{amount}}</span>
+                  <span>{{unit.name}}</span>
+                  <span>{{food.name}}</span>
+                  <button {{action "editIngredient"}}>edit</button>
+                {{/if}}
+                <button {{action "deleteIngredient"}}>delete</button>
+            </div><!--step-qs-->
+        {{/each}}
+        <button {{action "addIngredient"}}>add an ingredient</button>
+        {{#if isEditing}}
+          {{textarea
+            placeholder="What directions go with this step?"
+            value=description}}
+            <input type="submit" value="Save this step" {{action "saveStep"}}>
+        {{else}}
+          <p>
+            {{description}}
+            <input type="submit" value="Edit this step" {{action "editStep"}}>
+          </p>
+        {{/if}}
+      {{/each}}
+
+      </div>
+
+    <input type="submit" value="Add a step" {{action "addStep"}}>
+
+  </section><!-- steps-->
+
+  <section class="notes">
+    <h2>Personal Notes</h2>
+    <div class="line"></div>
+    {{textarea
+      value=notes}}
+  </section><!-- notes-->
+
+  <input type="submit" value="Save this Recipe!" {{action "saveRecipe"}}>
+</form>

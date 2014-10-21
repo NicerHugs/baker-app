@@ -14,6 +14,7 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
       self.get('recipe.ingredients').addObject(ingredient);
       self.get('recipe').save();
     });
+    return this.get('recipe.id');
   },
 
   //save ingredients to server
@@ -42,7 +43,6 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
     return this.fetchAuthor()
       .then(this.makeRecipe.bind(this))
       .then(this.addRecipeToAuthor.bind(this))
-      .then(this.saveIngredients.bind(this))
-      .then(console.log('finished'));
+      .then(this.saveIngredients.bind(this));
   }
 });

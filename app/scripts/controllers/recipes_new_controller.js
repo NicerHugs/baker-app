@@ -11,6 +11,7 @@ Baker.RecipesNewController = Ember.Controller.extend({
   isPublic: false,
   actions: {
     saveRecipe: function() {
+      var self=this;
       var workflow = Baker.NewRecipeWorkflow.create({
         attributes: {
           name: this.name,
@@ -31,7 +32,9 @@ Baker.RecipesNewController = Ember.Controller.extend({
         store: this.get('store'),
         authorID: this.get('author.id')
       });
-      workflow.run();
+      workflow.run().then(function(id) {
+        self.transitionToRoute('recipes.recipe', id);
+      });
     },
     addStep: function() {
       var stepNum = this.get('steps').length + 1;

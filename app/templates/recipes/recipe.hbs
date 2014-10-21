@@ -67,6 +67,6 @@
     <p>{{notes}}</p>
   </section><!--notes-->
   <section class="edit">
-    <button {{action "editRecipe"}}>Edit this recipe</button>
+    {{#link-to "recipes.edit" id}}Edit this recipe{{/link-to}}
   </section>
 </div><!--recipe-->

@@ -2,7 +2,9 @@
   <h2>My Recipes</h2><div class="line"></div>
 </div>
 <ul class="block-list">
-  <li class="add-new"><i class="fa fa-plus"></i>Add Recipe</li>
+  {{#link-to "recipes.new"}}
+    <li class="add-new"><i class="fa fa-plus"></i>Add Recipe</li>
+  {{/link-to}}
   {{#each}}
     {{#link-to "recipes.recipe" id}}
       <li><h4>{{name}}</h4></li>
