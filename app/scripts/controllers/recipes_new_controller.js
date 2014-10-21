@@ -4,7 +4,7 @@ Baker.RecipesNewController = Ember.Controller.extend({
   recipeType: ["breakfast", "lunch", "dinner", "dessert"],
   selectedRecipe: null,
   tempUnit: ["Farenheit", "Celcius"],
-  selectedTempUnit: null,
+  selectedTempUnit: "Farenheit",
   author: Ember.computed.alias('controllers.application.currentUser'),
   ingredients: [],
   steps: [],

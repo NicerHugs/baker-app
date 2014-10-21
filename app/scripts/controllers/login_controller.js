@@ -13,10 +13,12 @@ Baker.LoginController = Ember.Controller.extend({
           // user authenticated with Firebase
           // set authdata to local storage
           localStorage.setItem('bakerAuth', JSON.stringify(authData));
-          self.set('currentUser', self.store.find('user', authData.uid));
-          self.set('email', '');
-          self.set('password', '');
-          self.transitionToRoute('index');
+          self.store.find('user', authData.uid).then(function(user) {
+            self.set('currentUser', user);
+            self.set('email', '');
+            self.set('password', '');
+            self.transitionToRoute('index');
+          });
         } else {
           console.log("Error authenticating user:", error);
         }

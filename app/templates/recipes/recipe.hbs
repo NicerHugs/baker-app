@@ -1,120 +1,72 @@
 <div class="recipe">
   <header>
-    <h2>The Most Awesome Chocolate Chip Cookies</h2>
-    <p>by Rasheeeda</p>
+    <h2>{{name}}</h2>
+    <p>by {{author.username}}</p>
     <img src="//fillmurray.com/800/400">
   </header>
   <section class="details">
     <div class="recipe-type">
       <label>Recipe Type</label>
-      <span>Dessert</span>
+      <span>{{recipeType}}</span>
     </div>
     <div class="prep-time">
       <label>Prep Time</label>
-      <span>15min</span>
+      <span>{{prepTime}}{{prepTimeUnit}}</span>
     </div>
     <div class="cook-time">
       <label>Cook Time</label>
-      <span>20min</span>
+      <span>{{cookTime}}{{cookTimeUnit}}</span>
     </div>
     <div class="cook-temp">
       <label>Cook Temp</label>
-      <span>350&deg;F</span>
+      <span>{{cookTemp}}&deg;{{cookTempUnit}}</span>
     </div>
   </section><!--details-->
   <ul class="ingredients">
     <li class="heading">
-      12 Cookies
+      {{yieldCount}} {{yieldUnit}}
       <button><i class="fa fa-pencil"></i> Adjust</button>
     </li>
-    <li>
-      <div class="quantity">1/2 cup</div>
-      <div class="ingredient">Sugar</div>
-    </li>
-    <li>
-      <div class="quantity">1 cup</div>
-      <div class="ingredient">All purpose flour</div>
-    </li>
-    <li>
-      <div class="quantity">2 Tb</div>
-      <div class="ingredient">Cinnamon</div>
-    </li>
-    <li>
-      <div class="quantity">1/2 t</div>
-      <div class="ingredient">Baking Powder</div>
-    </li>
-    <li>
+    {{#each ingredients}}
+      <li>
+        <div class="quantity">{{quantity}} {{unit.name}}</div>
+        <div class="ingredient">{{food.name}}</div>
+      </li>
+    {{/each}}
       <div class="quantity"></div>
       <div class="ingredient"></div>
     </li>
   </ul><!--ingredients-->
   <section class="instructions">
     <ul>
-      <li>
-        <div class="heading">
-          <h2>Step 1</h2><div class="line"></div>
-        </div>
-        <div class="step-description">
-          <p>Pitchfork banjo Bushwick, put a bird on it bitters VHS single-origin coffee. Paleo 90's authentic ennui, Cosby sweater dreamcatcher bitters. Thundercats mixtape American Apparel ethical skateboard sustainable. Echo Park art party meggings fixie direct trade, ugh 90's slow-carb whatever Carles.</p>
-        </div>
-        <div class="ingredient-table">
-          <div class="quantity">
-            1/2 Cup
+      {{#each steps}}
+        <li>
+          <div class="heading">
+            <h2>Step {{stepNum}}</h2><div class="line"></div>
           </div>
-          <div class="ingredient">
-            Sugar
+          <div class="step-description">
+            <p>{{description}}</p>
           </div>
-          <div class="quantity">
-            1 Cup
+          <div class="ingredient-table">
+            {{#each ingredients}}
+              <div class="quantity">
+                {{quantity}} {{unit.name}}
+              </div>
+              <div class="ingredient">
+                {{food.name}}
+              </div>
+            {{/each}}
           </div>
-          <div class="ingredient">
-            Flour
-          </div>
-          <div class="quantity">
-            2 Tb
-          </div>
-          <div class="ingredient">
-            Cinnamon
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="heading">
-          <h2>Step 2</h2><div class="line"></div>
-        </div>
-        <div class="step-description">
-          <p>Pitchfork banjo Bushwick, put a bird on it bitters VHS single-origin coffee. Paleo 90's authentic ennui, Cosby sweater dreamcatcher bitters. Thundercats mixtape American Apparel ethical skateboard sustainable. Echo Park art party meggings fixie direct trade, ugh 90's slow-carb whatever Carles.</p>
-        </div>
-        <div class="ingredient-table">
-          <div class="quantity">
-            1/2 Cup
-          </div>
-          <div class="ingredient">
-            Sugar
-          </div>
-          <div class="quantity">
-            1 Cup
-          </div>
-          <div class="ingredient">
-            Flour
-          </div>
-          <div class="quantity">
-            2 Tb
-          </div>
-          <div class="ingredient">
-            Cinnamon
-          </div>
-        </div>
-      </li>
+        </li>
+      {{/each}}
     </ul>
   </section><!--instructions-->
   <section class="notes">
     <h2>Personal Notes</h2>
     <div class="line"></div>
-    <p>Pitchfork banjo Bushwick, put a bird on it bitters VHS single-origin coffee. Paleo 90's authentic ennui, Cosby sweater dreamcatcher bitters. Thundercats mixtape American Apparel ethical skateboard sustainable. Echo Park art party meggings fixie direct trade, ugh 90's slow-carb whatever Carles.</p>
+    <p>{{notes}}</p>
   </section><!--notes-->
   <section class="edit">
-    <label>Edit this recipe</label>
-    <button>Start</button>
+    <button {{action "editRecipe"}}>Edit this recipe</button>
   </section>
 </div><!--recipe-->

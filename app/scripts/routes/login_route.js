@@ -14,8 +14,10 @@ Baker.LoginRoute = Ember.Route.extend({
       Baker.ref.authWithCustomToken(localAuthData.token, function(error, authData) {
         if (error === null) {
           // user authenticated with Firebase
-          self.controllerFor('application').set('currentUser', self.store.find('user', authData.uid));
-          self.transitionTo('index');
+          self.store.find('user', authData.uid).then(function(user) {
+            self.controllerFor('application').set('currentUser', user);
+            self.transitionTo('index');
+          });
         } else {
           console.log("Error authenticating user:", error);
         }
