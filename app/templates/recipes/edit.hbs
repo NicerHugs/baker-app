@@ -13,21 +13,21 @@
 
     <div class="cooking-qs">
       {{view Ember.Select
-          content=recipeType
-          value=selectedRecipeType
+          content=recipeTypes
+          value=recipeType
           prompt="Recipe Type"}}
       {{input type="text" placeholder="Prep Time" value=prepTime}}
       {{view Ember.Select
-          content=timeUnit
-          value=selectedPrepTimeUnit}}
+          content=timeUnits
+          value=prepTimeUnit}}
       {{input type="text" placeholder="Cook Time" value=cookTime}}
       {{view Ember.Select
-          content=timeUnit
-          value=selectedCookTimeUnit}}
+          content=timeUnits
+          value=scookTimeUnit}}
       {{input type="text" placeholder="Cook Temp" value=cookTemp}}
       {{view Ember.Select
-          content=tempUnit
-          value=selectedTempUnit}}
+          content=tempUnits
+          value=tempUnit}}
     </div><!--cooking-qs-->
 
     <div class="yield-qs">
@@ -42,16 +42,16 @@
     <div class="line"></div>
 
       <div class="step">
-        {{#each steps itemController="step"}}
+        {{#each steps itemController="stepEdit"}}
         <h3>Step {{stepNum}}</h3>
-        {{#each ingredients itemController="ingredient"}}
+        {{#each ingredients itemController="ingredientEdit"}}
             <div class="step-qs">
                 {{#if isEditing}}
-                  {{input type="text" placeholder="Amount" value=amount}}
+                  {{input type="text" placeholder="Amount" value=quantity}}
                   {{partial "ingredientForm"}}
                   <button {{action "saveIngredient"}}>save</button>
                 {{else}}
-                  <span>{{amount}}</span>
+                  <span>{{quantity}}</span>
                   <span>{{unit.name}}</span>
                   <span>{{food.name}}</span>
                   <button {{action "editIngredient"}}>edit</button>
