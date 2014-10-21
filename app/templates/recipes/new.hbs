@@ -2,7 +2,16 @@
     <section class="basic">
       <h2>Basic Info</h2>
       <div class="line"></div>
-      <button {{action "addPic"}}><i class="fa fa-plus"></i>Add Photo</button>
+      <div class="pic-button-container">
+        {{#if imgURL}}
+          <img class="temp-img-thumb"{{bind-attr src=imgURL}}/>
+          <button {{action "addPic"}} class="img-thumb-overlay">
+            <i class="fa fa-plus"></i>Change Photo
+          </button>
+        {{else}}
+          <button {{action "addPic"}}><i class="fa fa-plus"></i>Add Photo</button>
+        {{/if}}
+      </div>
 
       <div class="basic-qs">
         {{input type="text" placeholder="Recipe Name" value=name}}

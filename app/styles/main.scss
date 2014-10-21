@@ -526,19 +526,43 @@ main {
 
 .basic {
 
-  button {
-    border: 0;
-    border-radius: rem(5);
+  .pic-button-container {
     float: left;
     height: rem(165);
     margin-right: 3%;
+    overflow: auto;
+    position: relative;
     width: 25%;
-  }
 
-  i {
-    display: block;
-    font-size: 3rem;
-    font-weight: 300;
+    button {
+      border: 0;
+      border-radius: rem(5);
+      height: 100%;
+      width: 100%;
+    }
+
+    img {
+      border: 0;
+      border-radius: rem(5);
+      object-fit: cover;
+      width: 100%;
+      height: 100%
+    }
+
+    .img-thumb-overlay {
+      background: RGBA(245, 245, 245, .5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+    }
+
+    i {
+      display: block;
+      font-size: 3rem;
+      font-weight: 300;
+    }
   }
 
   .basic-qs {
