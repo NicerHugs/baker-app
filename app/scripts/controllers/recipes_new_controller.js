@@ -9,7 +9,16 @@ Baker.RecipesNewController = Ember.Controller.extend({
   ingredients: [],
   steps: [],
   isPublic: false,
+  imgURL: '',
   actions: {
+    addPic: function() {
+      var self = this;
+      filepicker.setKey("A2XfJXxUSw61YLa6JvOkgz");
+
+      filepicker.pickAndStore({},{},function(Blobs){
+        self.set('imgURL', Blobs[0].url);
+      });
+    },
     saveRecipe: function() {
       var self=this;
       var workflow = Baker.NewRecipeWorkflow.create({
@@ -25,7 +34,8 @@ Baker.RecipesNewController = Ember.Controller.extend({
           cookTempUnit: this.get('selectedCookTempUnit'),
           yield: this.get('yield'),
           yieldUnit: this.get('yieldUnit'),
-          notes: this.get('notes')
+          notes: this.get('notes'),
+          imgURL: this.get('imgURL')
         },
         ingredients: this.get('ingredients'),
         steps: this.get('steps'),

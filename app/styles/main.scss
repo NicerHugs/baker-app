@@ -259,6 +259,11 @@ main {
     background: $background;
     height: auto;
     text-align: center;
+
+    img {
+      max-width: rem(800);
+      object-fit: cover;
+    }
   }
 
   .details {
@@ -375,12 +380,12 @@ main {
 
     .step-description {
       float: left;
-      width: 66%;
+      width: 65%;
     }
 
     .ingredient-table {
       float: left;
-      width: 34%;
+      width: 35%;
     }
 
     .ingredient,
@@ -390,7 +395,7 @@ main {
       font-weight: 300;
       height: rem(40);
       padding: rem(10);
-      width: 55%;
+      width: 50%;
 
       &:last-of-type {
         border-bottom: 0;
@@ -401,7 +406,6 @@ main {
       border-right: 1px solid $light;
       font-weight: 500;
       text-align: right;
-      width: 45%;
     }
   }
 
@@ -574,6 +578,7 @@ main {
   .step {
     overflow: auto;
   }
+
   .step-qs {
     width: 100%;
 
@@ -609,19 +614,3 @@ main {
     margin-bottom: rem(10);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//

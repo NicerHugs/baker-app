@@ -2,7 +2,7 @@
   <header>
     <h2>{{name}}</h2>
     <p>by {{author.username}}</p>
-    <img src="//fillmurray.com/800/400">
+    <img {{bind-attr src=imgURL}} />
   </header>
   <section class="details">
     <div class="recipe-type">

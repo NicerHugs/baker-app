@@ -12,7 +12,8 @@
     "ember-data": "1.0.0-beta.8",
     "handlebars": "~2.0.0",
     "firebase": "~1.1.2",
-    "emberfire": "~1.2.7"
+    "emberfire": "~1.2.7",
+    "filepicker": "*"
   },
   "resolutions": {
     "handlebars": ">= 1.0.0 < 2.0.0",
