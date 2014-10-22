@@ -2,11 +2,11 @@
   <h2>Public Recipes</h2><div class="line"></div>
 </div>
 <ul class="block-list">
-  {{#each}}
-    {{#link-to "recipes.recipe" recipe.id}}
+  {{#each recipes}}
+    {{#link-to "recipes.recipe" id}}
       <li>
-        <img {{bind-attr src=recipe.imgURL}}>
-        <h4>{{recipe.name}}</h4>
+        <img {{bind-attr src=imgURL}}>
+        <h4>{{name}}</h4>
       </li>
     {{/link-to}}
   {{/each}}
