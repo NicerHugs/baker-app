@@ -39,9 +39,13 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
   },
 
   addRecipeToPublic: function() {
+    var self = this;
     if (this.get('recipe.isPublic')) {
-      var publicRecipe = this.store.createRecord('publicRecipe').set('recipe', this.get('recipe'));
-      return publicRecipe.save();
+      var publicRecipe = this.store.find('publicRecipe', 'all')
+        .then(function(collection) {
+          collection.get('recipes').addObject(self.get('recipe'));
+          return publicRecipe.save;
+      });
     }
   },
 
