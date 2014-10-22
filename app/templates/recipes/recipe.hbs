@@ -66,7 +66,9 @@
     <div class="line"></div>
     <p>{{notes}}</p>
   </section><!--notes-->
-  <section class="edit">
-    {{#link-to "recipes.edit" id}}Edit this recipe{{/link-to}}
-  </section>
+  {{#if isAuthor}}
+    <section class="edit">
+      {{#link-to "recipes.edit" id}}Edit this recipe{{/link-to}}
+    </section>
+  {{/if}}
 </div><!--recipe-->
