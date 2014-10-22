@@ -60,7 +60,7 @@
                     {{partial "ingredientForm"}}
                     <button {{action "saveIngredient"}}>save</button>
                   {{else}}
-                    <span>{{amount}}</span>
+                    <span>{{quantity}}</span>
                     <span>{{unit.name}}</span>
                     <span>{{food.name}}</span>
                     <button {{action "editIngredient"}}>edit</button>

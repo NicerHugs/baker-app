@@ -111,6 +111,7 @@ Baker.IngredientController = Ember.ObjectController.extend({
       this.store.find('food', this.get('name')).then(function(food){
         self.set('food', food);
       });
+      console.log(this.get('model'));
       this.get('parentController.parentController.ingredients').addObject(this.get('model'));
     },
     deleteIngredient: function() {

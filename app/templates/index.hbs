@@ -12,10 +12,14 @@
         <i class="fa fa-plus"></i>Add Recipe
       </li>
     {{/link-to}}
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
+    {{#each myRecipes}}
+      {{#link-to "recipes.recipe" id}}
+        <li>
+          <img {{bind-attr src=imgURL}}>
+          <h4>{{name}}</h4>
+        </li>
+      {{/link-to}}
+    {{/each}}
   </ul>
 
   <div class="heading">
@@ -25,11 +29,14 @@
     {{/link-to}}
   </div>
   <ul class="block-list">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
+    {{#each publicRecipes}}
+      {{#link-to "recipes.recipe" recipe.id}}
+        <li>
+          <img {{bind-attr src=recipe.imgURL}}>
+          <h4>{{recipe.name}}</h4>
+        </li>
+      {{/link-to}}
+    {{/each}}
   </ul>
 
   <div class="heading">

@@ -4,5 +4,11 @@ Baker.IndexRoute = Ember.Route.extend({
     if (!currentUser) {
       this.transitionTo('login');
     }
+  },
+  setupController: function(controller, model) {
+    var myRecipes = this.controllerFor('application')
+      .get('currentUser.recipes');
+    controller.set('myRecipes', myRecipes);
+    controller.set('publicRecipes', this.store.find('publicRecipe'));
   }
 });

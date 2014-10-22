@@ -38,11 +38,19 @@ Baker.NewRecipeWorkflow = Ember.Object.extend({
     return this.get('author').save();
   },
 
+  addRecipeToPublic: function() {
+    if (this.get('recipe.isPublic')) {
+      var publicRecipe = this.store.createRecord('publicRecipe').set('recipe', this.get('recipe'));
+      return publicRecipe.save();
+    }
+  },
+
   //clear form and redirect to the recipe
   run: function() {
     return this.fetchAuthor()
       .then(this.makeRecipe.bind(this))
       .then(this.addRecipeToAuthor.bind(this))
+      .then(this.addRecipeToPublic.bind(this))
       .then(this.saveIngredients.bind(this));
   }
 });

@@ -22,3 +22,7 @@ Baker.Step = DS.Model.extend({
   description: DS.attr('string'),
   ingredients: DS.hasMany('ingredientFood', {async: true})
 });
+
+Baker.PublicRecipe = DS.Model.extend({
+  recipe: DS.belongsTo('recipe')
+});
