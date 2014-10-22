@@ -1,3 +1,13 @@
-{{!-- <div class="heading">
+<div class="heading">
   <h2>Public Recipes</h2><div class="line"></div>
-</div> --}}
+</div>
+<ul class="block-list">
+  {{#each}}
+    {{#link-to "recipes.recipe" recipe.id}}
+      <li>
+        <img {{bind-attr src=recipe.imgURL}}>
+        <h4>{{recipe.name}}</h4>
+      </li>
+    {{/link-to}}
+  {{/each}}
+</ul>
