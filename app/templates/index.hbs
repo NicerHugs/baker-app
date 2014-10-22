@@ -30,10 +30,10 @@
   </div>
   <ul class="block-list">
     {{#each publicRecipes}}
-      {{#link-to "recipes.recipe" recipe.id}}
+      {{#link-to "recipes.recipe" id}}
         <li>
-          <img {{bind-attr src=recipe.imgURL}}>
-          <h4>{{recipe.name}}</h4>
+          <img {{bind-attr src=imgURL}}>
+          <h4>{{name}}</h4>
         </li>
       {{/link-to}}
     {{/each}}

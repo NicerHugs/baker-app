@@ -24,5 +24,5 @@ Baker.Step = DS.Model.extend({
 });
 
 Baker.PublicRecipe = DS.Model.extend({
-  recipe: DS.belongsTo('recipe')
+  recipes: DS.hasMany('recipe', {async: true})
 });
